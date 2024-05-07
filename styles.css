@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.second-heading{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+    flex-wrap: wrap;
+}
+.trend-prod{
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
