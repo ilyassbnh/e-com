@@ -2,6 +2,29 @@
     margin: 0;
     padding: 0;
 }
+.navbar>a{
+
+    color:#FACE7F;
+}
+.navbar>a:hover{
+
+    color:#f7a611;
+   
+}
+.navbar .nav-link{
+
+    color:#911F27;
+}
+.nav-pills .nav-item .nav-link.active{
+
+    background-color:#911F27;
+}
+.d-flex .btn{
+
+    background-color:#911F27;
+    color:#fff;
+}
+
 .second-heading{
     display: flex;
     justify-content: space-around;
@@ -25,6 +48,7 @@
     height: auto;
     padding: 0% 10%;
     gap: 10px;
+   
 }
 .left-feartured{
     justify-content: space-around;
@@ -56,7 +80,7 @@
     margin: 10px 40%;
 }
 .happyCustomers{
-
+padding-block: 4vh;
     color:#911F27;
     background-color: #FACE7F;
     text-align: center;
@@ -64,14 +88,57 @@
 }
 
 .ourBlog{
-  
+    margin-block:4vh ;
+  display: flex;
+  flex-wrap: wrap;
     text-align: center;
+    
+   justify-content: center;
+}
+.ourBlog>div:first-child{
+
+   width: 100%;
+   color: #911F27;
+   font-weight: bold;
+}
+.card{
+    margin-top: 1vh;
     color: #911F27;
+    margin-inline: 4vw;
 }
 footer{
+    padding-block: 1vh;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     background-color:#911F27;
     color: white;
     }
+
+
+
+
+    /*testISMAIL*/
+
+
+
+    @media screen and (max-width: 768px) {
+        #navbar-example2 {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+        } 
+        #navbar-example2 .nav-pills {
+           width: 100%; 
+        }
+        #navbar-example2 .nav-item {
+           width: 100%; 
+        }
+        #navbar-example2 .nav-link {
+           text-align: center; 
+        }
+        #navbar-example2 .d-flex {
+            align-self: center; 
+         }
+     }
+     
