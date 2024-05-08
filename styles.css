@@ -1,6 +1,7 @@
-*{
+* {
     margin: 0;
     padding: 0;
+
 }
 .navbar>a{
 
@@ -19,29 +20,30 @@
 
     background-color:#911F27;
 }
-.d-flex .btn{
 
-    background-color:#911F27;
-    color:#fff;
-}
 
-.second-heading{
+
+
+.second-heading {
     display: flex;
     justify-content: space-around;
     margin: 30px;
     flex-wrap: wrap;
 }
-.trend-prod{
+
+.trend-prod {
     display: flex;
     justify-content: space-around;
     gap: 20px;
 }
-.fourth-heading{
+
+.fourth-heading {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.feartured-items{
+
+.feartured-items {
     background-color: #FACE7F;
     display: flex;
     justify-content: center;
@@ -50,38 +52,48 @@
     gap: 10px;
    
 }
-.left-feartured{
+
+.left-feartured {
     justify-content: space-around;
     margin: auto;
 }
-.right-reartured{
+
+.right-reartured {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: auto; 
+    margin: auto;
 }
-#scrollspyHeading5{
+
+#scrollspyHeading5 {
     display: flex;
     justify-content: center
 }
-.new-product{
+
+.new-product {
     display: flex;
     margin: auto;
     flex-wrap: wrap;
 }
-.cardNP{
+
+.cardNP {
     flex-wrap: wrap;
     margin: auto;
     padding: 10px;
-    
+
 }
-.login{
+
+.login {
     display: flex;
     margin: 10px 40%;
 }
-.happyCustomers{
+/*.happyCustomers{
 padding-block: 4vh;
-    color:#911F27;
+    color:#911F27;*/
+
+.happyCustomers {
+
+    color: #911F27;
     background-color: #FACE7F;
     text-align: center;
     padding-inline: 20vw;
@@ -91,6 +103,7 @@ padding-block: 4vh;
     margin-block:4vh ;
   display: flex;
   flex-wrap: wrap;
+
     text-align: center;
     
    justify-content: center;
@@ -108,15 +121,20 @@ padding-block: 4vh;
 }
 footer{
     padding-block: 1vh;
+
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    background-color:#911F27;
+    background-color: #911F27;
     color: white;
     }
 
 
+    .d-flex .btn{
 
+        background-color:#911F27;
+        color:#fff;
+    }
 
     /*testISMAIL*/
 
@@ -142,3 +160,24 @@ footer{
          }
      }
      
+
+.panel-titles{
+    display: flex;
+    justify-content: space-around;
+}
+.panel-article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+
+}
+.card-body{
+    display: flex;
+    gap: 20px;
+}
+.panel-button{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
