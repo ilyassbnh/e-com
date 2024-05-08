@@ -13,3 +13,46 @@
     justify-content: space-around;
     gap: 20px;
 }
+.fourth-heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.feartured-items{
+    background-color: #FACE7F;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    padding: 0% 10%;
+    gap: 10px;
+}
+.left-feartured{
+    justify-content: space-around;
+    margin: auto;
+}
+.right-reartured{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto; 
+}
+#scrollspyHeading5{
+    display: flex;
+    justify-content: center
+}
+.new-product{
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+}
+.cardNP{
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 10px;
+    
+}
+.login{
+    display: flex;
+    margin: 10px 20%;
+}
+
