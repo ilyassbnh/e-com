@@ -53,6 +53,16 @@
 }
 .login{
     display: flex;
-    margin: 10px 20%;
+    margin: 10px 40%;
 }
-
+.login{
+    display: flex;
+    flex-direction: column;
+}
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: #FACE7F;
+    color: white;
+}
