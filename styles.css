@@ -68,3 +68,10 @@
     text-align: center;
     color: #911F27;
 }
+footer{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color:#911F27;
+    color: white;
+    }
