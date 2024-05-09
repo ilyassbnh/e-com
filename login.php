@@ -17,12 +17,12 @@
 <body class="bodyLogin">
 
     <form class="login"action="">
-      <div><a class="navbar-brand" href="index.html"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
+      <div><a class="navbar-brand" href="index.php"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
     <div>Login:<br>  
     <input type="text"></div>
     <div>Password:<br> <input type="text"></div>
     <div><input type="submit" > </div>
-    <div><a href="signup.html">signup</a></div>
+    <div><a href="signup.php">signup</a></div>
     </form>
 </body>
 </html>

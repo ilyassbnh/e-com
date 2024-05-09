@@ -17,7 +17,7 @@
 <body class="bodyLogin">
 
     <form class="login"action="">
-      <div><a class="navbar-brand" href="index.html"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
+      <div><a class="navbar-brand" href="index.php"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
     
     <div>Full Name:<br>  
     <input type="text"></div>  
@@ -26,7 +26,7 @@
     <div>Password:<br> <input type="text"></div>
     <div>Confirm Password:<br> <input type="text"></div>
     <div><input type="submit" value="signup"></div>
-    <div><a href="login.html">Login</a></div>
+    <div><a href="login.php">Login</a></div>
     
     </form>
 </body>
