@@ -26,7 +26,7 @@
     <div>Password:<br> <input type="text"></div>
     <div>Confirm Password:<br> <input type="text"></div>
     <div><input type="submit" value="signup"></div>
-    <div><a href="login.html">Login</a></div>
+    <div><a href="login.php">Login</a></div>
     
     </form>
 </body>
