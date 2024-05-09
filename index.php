@@ -36,10 +36,10 @@
         <a class="nav-link" href="#scrollspyHeading5">fifth</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="panel.html">Panel</a>
+        <a class="nav-link" href="panel.php">Panel</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="login.php">Login</a>
       </li>
 
       <form class="d-flex" role="search">
@@ -213,7 +213,7 @@
     <!-- new product -->
     <h1 id="scrollspyHeading5">New Products</h1>
     <div class="new-product">
-      <div class="cardNP" style="width: 18rem;">
+     <!-- <div class="cardNP" style="width: 18rem;">
         <img
           src="images/2024 Men's Casual Pants Loose Waffle Plaid Pants Young Men Spring Autumn Seasons Sweatpants Casual Sweatpants 4XL 80-90kg-Espresso.jpeg"
           class="card-img-top" alt="...">
@@ -304,7 +304,28 @@
           <p class="card-text">Description</p>
           <p class="card-text">Price</p>
         </div>
-      </div>
+      </div>-->
+<?php $filename = 'Book.csv';
+         $delimiter = ',';
+         if (($handle = fopen($filename, 'r')) !== false) {
+          fgetcsv($handle, 1000, $delimiter);
+          while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
+            echo '<div class="cardNP" style="width: 18rem;">
+            <img src="'.$row[6].'" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">'.$row[2].'</p>
+              <p class="card-text">'.$row[5].' MAD</p>
+            </div>
+          </div>';
+            
+          }
+          fclose($handle);
+      }
+
+
+?>
+
+
     </div>
 
 

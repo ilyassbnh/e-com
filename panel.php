@@ -18,7 +18,7 @@
 <body>
   <!-- header -->
   <nav id="navbar-example2" class="navbar sticky-top  bg-body-tertiary px-3 mb-3">
-    <a class="navbar-brand" href="#"><img src="images/Logo 5.png">TrendyClothes</a>
+    <a class="navbar-brand" href="index.php"><img src="images/Logo 5.png">TrendyClothes</a>
     <ul class="nav nav-pills">
       <li class="nav-item ">
         <a class="nav-link" href="#yourcart">Shop</a>
