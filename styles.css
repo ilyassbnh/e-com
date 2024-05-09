@@ -136,6 +136,31 @@ footer{
         color:#fff;
     }
 
+    .bodyLogin{
+
+    background-color: #FACE7F;
+    
+    }
+    .login{
+        display:flex;
+        flex-direction: column;
+        background-color:#911F27;
+        align-items: center;
+        text-align: center;
+        color:#FACE7F;
+       padding: 12vw;
+       border-radius: 5vh;
+
+    }
+    .login a{
+
+        color:#FACE7F;
+    }
+    .login input{
+
+       border-radius: 2vh;
+    }
+
     /*testISMAIL*/
 
 
