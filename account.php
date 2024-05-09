@@ -1,15 +1,3 @@
-<?php
-session_start();
-echo'<script>'.$_SESSION['userName'].'</script>';
-if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
-
-  header('Location:account.php');
-}
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,17 +35,21 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
       <li class="nav-item">
         <a class="nav-link" href="#scrollspyHeading5">fifth</a>
       </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="panel.php">Panel</a>
-      </li>-->
       <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
+        <a class="nav-link" href="panel.php">Panel</a>
       </li>
+      
 
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline" type="submit">Search</button>
       </form>
+      <li class="nav-item">
+        <a class="nav-link" href="login.php"><?php session_start(); echo '<i class="fa-solid fa-user"></i> '.$_SESSION['userName'];?></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php"onclick="<?php session_destroy();?>"><i class="fa-solid fa-sign-out"></i> Logout</a>
+      </li>
     </ul>
   </nav>
   <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"

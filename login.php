@@ -1,3 +1,64 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  
+   $Email=$_POST['email'];
+   $Password=$_POST['password'];
+   
+  
+   if($Password !=""&& $Email!=""){
+    
+
+
+    
+
+      
+     
+     
+      
+      $csvUser='User.csv';
+      $delimiter=",";
+      $fileHandle = fopen($csvUser, 'r');
+      
+    
+      fgetcsv($fileHandle, 1000, $delimiter);
+      while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
+        if($row[2]==$Email&&$row[3]==$Password ){
+
+        session_start();
+        $_SESSION['userName']=$row[1];
+       }
+        else{
+
+
+          echo'<script>alert("Wrong Email Or Password")</script>';
+        }
+        
+      }
+      header('Location:account.php');
+      fclose($fileHandle);
+      
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+  
+    ?>
+
+
 <html lang="en">
 
 <head>
@@ -16,11 +77,11 @@
 </head>
 <body class="bodyLogin">
 
-    <form class="login"action="">
+    <form class="login"action="#" method="POST">
       <div><a class="navbar-brand" href="index.php"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
     <div>Login:<br>  
-    <input type="text"></div>
-    <div>Password:<br> <input type="text"></div>
+    <input name="email" type="text"></div>
+    <div>Password:<br> <input name="password" type="text"></div>
     <div><input type="submit" > </div>
     <div><a href="signup.php">signup</a></div>
     </form>
