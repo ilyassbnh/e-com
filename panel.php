@@ -171,7 +171,7 @@
     </div>
   </div>
   <div class="panel-button">
-    <a href="index.html"style="color: #911F27;">Continue shopping</a>
+    <a href="index.php"style="color: #911F27;">Continue shopping</a>
     <button type="button" class="btn" style="background-color: #911F27; color: white;">Proccess to checkout</button>
 
   </div>

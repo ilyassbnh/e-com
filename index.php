@@ -39,13 +39,13 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
         <a class="nav-link" href="#scrollspyHeading2">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#scrollspyHeading3">Contact</a>
+        <a class="nav-link" href="#scrollspyHeading3">Trending Product</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#scrollspyHeading4">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#scrollspyHeading5">fifth</a>
+        <a class="nav-link" href="#scrollspyHeading5">New Products</a>
       </li>
       <!--<li class="nav-item">
         <a class="nav-link" href="panel.php">Panel</a>
@@ -55,8 +55,13 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
       </li>
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline" type="submit">Search</button>
+      <div class="position-relative">
+        <input class="form-control me-2 pr-4" type="search" placeholder="Search" aria-label="Search">
+        <i class="fas fa-filter position-absolute top-50 translate-middle-y"></i>
+      </div>
+
+
+      <button class="btn btn-outline" type="submit">Search </button>
       </form>
     </ul>
   </nav>
@@ -204,7 +209,7 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
 
     <!-- Fourth heading -->
     <div class="fourth-heading">
-      <h1 id="scrollspyHeading4">Fourth heading</h1>
+      <h1 id="scrollspyHeading4">blog</h1>
       <button type="button" class="btn btn-outline-secondary">Browse All</button>
       <div class="feartured-items">
         <div class="left-feartured">
@@ -234,7 +239,7 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
             echo '<div class="cardNP" style="width: 18rem;">
             <img src="'.$row[6].'" class="card-img-top" alt="...">
             <div class="card-body">
-              <p class="card-text">'.$row[2].'</p>
+              <p class="card-text">'.$row[2].'</p> 
               <p class="card-text">'.$row[5].' MAD</p>
             </div>
           </div>';

@@ -196,9 +196,24 @@ footer{
 .card-body{
     display: flex;
     gap: 20px;
+    justify-content: center;
 }
 .panel-button{
     display: flex;
     justify-content: space-around;
     margin: 20px;
+}
+.index-btn{
+    border-color: transparent;
+    background-color: #FACE7F;
+    color:#911F27;
+    padding: 2px;
+    margin-top: 5px;
+}
+.position-relative{
+    margin-right: 5px;
+}
+.fa-filter{
+    color: #911F27;
+    right: 10px;
 }

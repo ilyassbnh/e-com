@@ -27,13 +27,13 @@
         <a class="nav-link" href="#scrollspyHeading2">Gallery</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#scrollspyHeading3">Contact</a>
+        <a class="nav-link" href="#scrollspyHeading3">Trending Products</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#scrollspyHeading4">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#scrollspyHeading5">fifth</a>
+        <a class="nav-link" href="#scrollspyHeading5">New Products</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="panel.php">Panel</a>
@@ -41,7 +41,10 @@
       
 
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <div class="position-relative">
+        <input class="form-control me-2 pr-4" type="search" placeholder="Search" aria-label="Search">
+        <i class="fas fa-filter position-absolute top-50 translate-middle-y" ></i>
+      </div>
         <button class="btn btn-outline" type="submit">Search</button>
       </form>
       <li class="nav-item">
@@ -57,7 +60,7 @@
 
 
     <!-- First heading -->
-    <h4 id="scrollspyHeading1">First heading</h4>
+    <h4 id="scrollspyHeading1"></h4>
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -196,7 +199,7 @@
 
     <!-- Fourth heading -->
     <div class="fourth-heading">
-      <h1 id="scrollspyHeading4">Fourth heading</h1>
+      <h1 id="scrollspyHeading4">Blog</h1>
       <button type="button" class="btn btn-outline-secondary">Browse All</button>
       <div class="feartured-items">
         <div class="left-feartured">
