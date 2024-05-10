@@ -76,33 +76,18 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="colorFilter" class="form-label">Color:</label><br>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorRed" value="Red">
-                    <label class="form-check-label" for="colorRed">Red</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorBlue" value="Blue">
-                    <label class="form-check-label" for="colorBlue">Blue</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorGreen" value="Green">
-                    <label class="form-check-label" for="colorGreen">Green</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorGray" value="Gray">
-                    <label class="form-check-label" for="colorGray">Gray</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorBlack" value="Black">
-                    <label class="form-check-label" for="colorBlack">Black</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="colorwhite" value="white">
-                    <label class="form-check-label" for="colorwhite">white</label>
-                  </div>
-
+                  <label for="colorFilter" class="form-label">Color:</label>
+                  <select class="form-select" id="colorFilter">
+                    <option value="Red" style="color: red;">&#x25A0; Red</option>
+                    <option value="Blue" style="color: blue;">&#x25A0; Blue</option>
+                    <option value="Green" style="color: green;">&#x25A0; Green</option>
+                    <option value="Gray" style="color: gray;">&#x25A0; Gray</option>
+                    <option value="Black" style="color: black;">&#x25A0; Black</option>
+                    <option value="White" style="color: white; background-color: gray;">&#x25A0; White</option>
+                  </select>
                 </div>
+
+
 
                 <div class="mb-3">
                   <label for="sizeFilter" class="form-label">Size:</label>
