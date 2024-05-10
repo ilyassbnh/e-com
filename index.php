@@ -92,33 +92,18 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
               </div>
               <div class="modal-body">
                 <div class="mb-3">
-                  <label for="colorFilter" class="form-label">Color:</label><br>
-                  <div class="form-check form-check-inline">
-                    <input name="color1" class="form-check-input" type="checkbox" id="colorRed" value="Red">
-                    <label class="form-check-label" for="colorRed">Red</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input name="color2"class="form-check-input" type="checkbox" id="colorBlue" value="Blue">
-                    <label class="form-check-label" for="colorBlue">Blue</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input name="color3" class="form-check-input" type="checkbox" id="colorGreen" value="Green">
-                    <label class="form-check-label" for="colorGreen">Green</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input name="color4"class="form-check-input" type="checkbox" id="colorGray" value="Gray">
-                    <label class="form-check-label" for="colorGray">Gray</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input name="color5"class="form-check-input" type="checkbox" id="colorBlack" value="Black">
-                    <label class="form-check-label" for="colorBlack">Black</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input name="color6"class="form-check-input" type="checkbox" id="colorwhite" value="white">
-                    <label class="form-check-label" for="colorwhite">white</label>
-                  </div>
-
+                  <label for="colorFilter" class="form-label">Color:</label>
+                  <select name="colorFilter"class="form-select" id="colorFilter">
+                    <option value="red" style="color: red;">&#x25A0; Red</option>
+                    <option value="blue" style="color: blue;">&#x25A0; Blue</option>
+                    <option value="green" style="color: green;">&#x25A0; Green</option>
+                    <option value="gray" style="color: gray;">&#x25A0; Gray</option>
+                    <option value="black" style="color: black;">&#x25A0; Black</option>
+                    <option value="white" style="color: white; background-color: gray;">&#x25A0; White</option>
+                  </select>
                 </div>
+
+
 
                 <div class="mb-3">
                   <label for="sizeFilter" class="form-label">Size:</label>
@@ -394,6 +379,8 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $text=$_POST['searchInput'];
+
+
 if($_POST['sizeFilter']!="" && isset($_POST['sizeFilter'])){
 $size=$_POST['sizeFilter'];
 
@@ -403,6 +390,17 @@ else{
 
   $size="";
 }
+if($_POST['colorFilter']!="" && isset($_POST['colorFilter'])){
+
+  echo'<script>'.$_POST['colorFilter'].'</script>';
+  $color=$_POST['colorFilter'];
+  
+  
+  }
+  else{
+  
+    $color="";
+  }
 
 
 $file = 'Book.csv';
@@ -413,7 +411,7 @@ if (($manage= fopen($file, 'r')) !== false) {
   while (($row = fgetcsv($manage, 1000, $delimite)) !== false) {
 
     
-    if(($text==$row[2]&&$size==$row[3])){
+    if($text==$row[2]&&$size==$row[3]&&$color==$row[4]){
     
      echo '<div class="cardNP" style="width: 18rem;">
      <img src="' . $row[6] . '" class="card-img-top" alt="...">
@@ -421,6 +419,7 @@ if (($manage= fopen($file, 'r')) !== false) {
        <p class="card-text">' . $row[2] . '</p> 
        <p class="card-text">' . $row[5] . ' MAD</p>
        <p class="card-text">' . $row[3] . '</p>
+       <p class="card-text">' . $row[4] . '</p>
      </div>
    </div>';
      }

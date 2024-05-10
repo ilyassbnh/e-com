@@ -63,16 +63,38 @@ echo'<script>alert("Passwords Do Not Match")</script>';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     integrity="sha512-LhPpY25LLe0GFG9xg3zAVt+aTZw2t7fI2w9lD5ydvfym1VxDz5wZPgeWz4wVWU6s8yCD9OPcPKwMgaUOjhX6bw=="
     crossorigin="anonymous" />
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
   <title>e-com</title>
-  <style>
-    .checked {
-      border: 2px solid #28a745; /* Green border */
-    }
-  </style>
-
-
 </head>
-<body class="bodyLogin">
-<a href="account.php">Confirm your choices</a>
+<body class="bodyLogin" id="bodyPreferences">
+
+  <div class="container">
+    <h1 class="mt-5 mb-3 preferences-title">Select Your Preferences</h1>
+    <div class="mb-3">
+      <!-- Add more preference buttons as needed -->
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference1">Male</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference2">Female</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference3">Child</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference4">Blue</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference5">Red</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference6">Green</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference7">Hoodie</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference8">Pants</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference9">Shorts</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference10">Sneakers</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference11">Sweatshirt</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference12">T-shirt</button>
+    </div>
+    <input type="text" id="selectedPreferences" class="form-control mb-3" readonly>
+    <button type="button" class="btn" id="savePreferencesBtn" onclick="redirect()">Save Preferences</button>
+  </div>
+
 </body>
 </html>
+<?php
+
+echo'<script>function redirect(){window.location.href="account.php";}</script>';
+
+
+?>
