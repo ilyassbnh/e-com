@@ -213,7 +213,11 @@ footer{
 .position-relative{
     margin-right: 5px;
 }
-.fa-filter{
-    color: #911F27;
-    right: 10px;
+.btn-primary{
+    background-color: white;
+
+}
+.input-group-text {
+    border: transparent;
+    background-color: transparent;
 }

@@ -55,9 +55,80 @@ if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
       </li>
 
       <form class="d-flex" role="search">
-      <div class="position-relative">
-        <input class="form-control me-2 pr-4" type="search" placeholder="Search" aria-label="Search">
-        <i class="fas fa-filter position-absolute top-50 translate-middle-y"></i>
+      <div class="input-group">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+ 
+      </div>
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <span class="input-group-text"><i class="fas fa-filter" data-bs-toggle="modal-body"
+            data-bs-target="#exampleModal" style="color: white"></i></span>
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Filtering</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+          <div class="mb-3">
+              <label for="colorFilter" class="form-label">Color:</label><br>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorRed" value="Red">
+                  <label class="form-check-label" for="colorRed">Red</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorBlue" value="Blue">
+                  <label class="form-check-label" for="colorBlue">Blue</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorGreen" value="Green">
+                  <label class="form-check-label" for="colorGreen">Green</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorGray" value="Gray">
+                  <label class="form-check-label" for="colorGray">Gray</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorBlack" value="Black">
+                  <label class="form-check-label" for="colorBlack">Black</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="colorwhite" value="white">
+                  <label class="form-check-label" for="colorwhite">white</label>
+              </div>
+              
+          </div>
+
+          <div class="mb-3">
+              <label for="sizeFilter" class="form-label">Size:</label>
+              <select class="form-select" id="sizeFilter">
+                  <option selected>Select Size</option>
+                  <option value="XXS">XXS</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+              </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="priceFilter" class="form-label">Price Range:</label>
+              <input type="range" class="form-range" id="priceFilter" min="0" max="1000" step="1">
+          </div>
+      </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
       </div>
 
 
