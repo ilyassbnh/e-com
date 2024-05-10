@@ -27,7 +27,7 @@
     <input name="email"type="text"></div>
     <div>Password:<br> <input name="password1"type="text"></div>
     <div>Confirm Password:<br> <input name="password2"type="text"></div>
-    <div><input type="submit" value="signup"></div>
+    <div><input type="submit" value="signup" class="index-btn"></div>
     <div><a href="login.php">Login</a></div>
     
     </form>

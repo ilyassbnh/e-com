@@ -5,8 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
    $Email=$_POST['email'];
    $Password=$_POST['password'];
-   
-  
+     
    if($Password !=""&& $Email!=""){
       
       $csvUser='User.csv';
@@ -26,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
         
        }
-      
-        
-      
-        
+        else{
+
+          echo'<script>alert("Wrong Email Or Password")</script>';
+        }
         
       }
       echo'<script>alert("Wrong Email Or Password")</script>';
@@ -65,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div>Login:<br>  
     <input name="email" type="text"></div>
     <div>Password:<br> <input name="password" type="text"></div>
-    <div><input type="submit" > </div>
+    <div><input type="submit" class="index-btn"></div>
     <div><a href="signup.php">signup</a></div>
     </form>
 </body>
