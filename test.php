@@ -1,5 +1,5 @@
 <?php
-$text=$_POST['searchInput']
+
 session_start();
 
 if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
@@ -12,8 +12,6 @@ else{
   $_SESSION['userName']="";
 
 }
-
-
 
 ?>
 
@@ -36,7 +34,26 @@ else{
 </head>
 
 <body>
-  <nav id="navbar-example2" class="navbar  bg-body-tertiary px-3 mb-3">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="navbar-example2" class="navbar sticky-top  bg-body-tertiary px-3 mb-3">
     <a class="navbar-brand" href="#"><img src="images/Logo 5.png">TrendyClothes</a>
     <ul class="nav nav-pills">
       <li class="nav-item ">
@@ -61,14 +78,41 @@ else{
         <a class="nav-link" href="login.php">Login</a>
       </li>
 
-      <form class="d-flex" role="search" action="#" method="POST">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <form class="d-flex" role="search">
       <div class="input-group">
-        <input name="searchInput"class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
  
       </div>
 
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="sticky();">
       <span class="input-group-text"><i class="fas fa-filter" data-bs-toggle="modal-body"
             data-bs-target="#exampleModal" style="color: white"></i></span>
       </button>
@@ -417,28 +461,19 @@ else{
     <p>Twitter</p>
   </div>
 </footer>
+<script>
+
+
+    sticky(){
+
+
+        document.querySelector('#navbar-example2').style.position="fixed";
+    }
+</script>
+
+
 </body>
 
 </html>
-<?php
 
 
-
-
-function searchItem($text){
-
-
-
-
-
-
-  
-}
-
-
-
-
-
-
-
-?>
