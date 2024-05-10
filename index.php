@@ -1,9 +1,16 @@
 <?php
+
 session_start();
-echo'<script>'.$_SESSION['userName'].'</script>';
+
 if(isset($_SESSION['userName'])&&!empty($_SESSION['userName'])){
 
   header('Location:account.php');
+  
+}
+else{
+
+  $_SESSION['userName']="";
+
 }
 
 ?>

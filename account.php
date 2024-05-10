@@ -1,3 +1,8 @@
+<?php
+session_start();
+$userName=$_SESSION['userName'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +50,7 @@
         <button class="btn btn-outline" type="submit">Search</button>
       </form>
       <li class="nav-item">
-        <a class="nav-link" href="login.php"><?php session_start(); echo '<i class="fa-solid fa-user"></i> '.$_SESSION['userName'];?></a>
+        <a class="nav-link" href="#"><?php echo '<i class="fa-solid fa-user"></i> '.$userName?></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="index.php"onclick="<?php session_destroy();?>"><i class="fa-solid fa-sign-out"></i> Logout</a>

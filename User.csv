@@ -1,4 +1,7 @@
-IdUser,FullName,Email,Password1,
+IdUser,FullName,Email,Password1
 
 
-1,"Ilyas Benhida",ilyas@gmail.com,147
+1,Ilyas Benhida,ilyas@gmail.com,147
+2,ismail,ismail@gmail.com,123
+3,test,test@gmail.com,258
+4,test1,test1@gmail.com,369

@@ -1,14 +1,22 @@
-
 <?php
-session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  
+   $IdUser;
+   $FullName=$_POST['fullName'];
    $Email=$_POST['email'];
-   $Password=$_POST['password'];
-   
+   $Password1=$_POST['password1'];
+   $Password2=$_POST['password2'];
   
-   if($Password !=""&& $Email!=""){
-      
+   if($Password1 !=""&& $Password2!=""){
+    if($Password1!=$Password2){
+
+echo'<script>alert("Passwords Do Not Match")</script>';
+
+
+    }
+    else{
+
+      echo'<script>alert("'.$FullName.'")</script>';
+      $IdUser;
       $csvUser='User.csv';
       $delimiter=",";
       $fileHandle = fopen($csvUser, 'r');
@@ -16,28 +24,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
       fgetcsv($fileHandle, 1000, $delimiter);
       while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
-        if($row[2]==$Email&&$row[3]==$Password ){
-
-        
-        $_SESSION['userName']=$row[1];
-
-        fclose($fileHandle);
-                header('Location: account.php');
-                break;
-        
-       }
-      
         
       
+        $IdUser=$row[0];}
         
-        
-      }
-      echo'<script>alert("Wrong Email Or Password")</script>';
-      fclose($fileHandle);
+        $IdUser++;
       
   }
      
-    }
+     
+      $newUser= array($IdUser,$FullName, $Email,$Password1);
+      $fileHandle = fopen($csvUser, 'a');
+      if ($fileHandle !== false) {
+    
+    fputcsv($fileHandle, $newUser);
+
+
+    fclose($fileHandle);
+
+
+
+    }}}
   
     ?>
 
@@ -57,16 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     integrity="sha512-LhPpY25LLe0GFG9xg3zAVt+aTZw2t7fI2w9lD5ydvfym1VxDz5wZPgeWz4wVWU6s8yCD9OPcPKwMgaUOjhX6bw=="
     crossorigin="anonymous" />
   <title>e-com</title>
+  <style>
+    .checked {
+      border: 2px solid #28a745; /* Green border */
+    }
+  </style>
+
+
 </head>
 <body class="bodyLogin">
-
-    <form class="login"action="#" method="POST">
-      <div><a class="navbar-brand" href="index.php"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
-    <div>Login:<br>  
-    <input name="email" type="text"></div>
-    <div>Password:<br> <input name="password" type="text"></div>
-    <div><input type="submit" > </div>
-    <div><a href="signup.php">signup</a></div>
-    </form>
+<a href="account.php">Confirm your choices</a>
 </body>
 </html>

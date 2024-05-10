@@ -1,53 +1,5 @@
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $IdUser;
-   $FullName=$_POST['fullName'];
-   $Email=$_POST['email'];
-   $Password1=$_POST['password1'];
-   $Password2=$_POST['password2'];
-  
-   if($Password1 !=""&& $Password2!=""){
-    if($Password1!=$Password2){
 
-echo'<script>alert("Passwords Do Not Match")</script>';
-
-
-    }
-    else{
-
-      echo'<script>alert("'.$FullName.'")</script>';
-      $IdUser;
-      $csvUser='User.csv';
-      $delimiter=",";
-      $fileHandle = fopen($csvUser, 'r');
-      
-    
-      fgetcsv($fileHandle, 1000, $delimiter);
-      while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
-        
-      
-        $IdUser=$row[0];}
-        
-        $IdUser++;
-      
-  }
-     
-     
-      $newUser= array($IdUser,$FullName, $Email,$Password1);
-      $fileHandle = fopen($csvUser, 'a');
-      if ($fileHandle !== false) {
-    
-    fputcsv($fileHandle, $newUser);
-
-
-    fclose($fileHandle);
-
-
-
-    }}}
-  
-    ?>
 <html lang="en">
 
 <head>
@@ -66,7 +18,7 @@ echo'<script>alert("Passwords Do Not Match")</script>';
 </head>
 <body class="bodyLogin">
 
-    <form class="login"action="#" method="POST">
+    <form class="login"action="preferences.php" method="POST">
       <div><a class="navbar-brand" href="index.php"><img src="images/Logo 5.png"><br>TrendyClothes</a></div>
     
     <div>Full Name:<br>  
