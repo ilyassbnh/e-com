@@ -67,28 +67,28 @@ echo'<script>alert("Passwords Do Not Match")</script>';
     <link rel="stylesheet" href="styles.css">
   <title>e-com</title>
 </head>
-<body class="bodyLogin">
+<body class="bodyLogin" id="bodyPreferences">
 
   <div class="container">
-    <h1 class="mt-5 mb-3">Select Your Preferences</h1>
+    <h1 class="mt-5 mb-3 preferences-title">Select Your Preferences</h1>
     <div class="mb-3">
       <!-- Add more preference buttons as needed -->
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference1">Male</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference2">Female</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference3">Child</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference4">Blue</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference5">Red</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference6">Green</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference7">Hoodie</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference8">Pants</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference9">Shorts</button>
-      <button type="button" class="btn btn-outline-primary preference-button" data-preference="preference10">Sneakers</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference1">Male</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference2">Female</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference3">Child</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference4">Blue</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference5">Red</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference6">Green</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference7">Hoodie</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference8">Pants</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference9">Shorts</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference10">Sneakers</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference11">Sweatshirt</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference12">T-shirt</button>
     </div>
     <input type="text" id="selectedPreferences" class="form-control mb-3" readonly>
-    <button type="button" class="btn btn-primary" id="savePreferencesBtn">Save Preferences</button>
+    <button type="button" class="btn" id="savePreferencesBtn">Save Preferences</button>
   </div>
 
-
-<a href="account.php">Confirm your choices</a>
 </body>
 </html>

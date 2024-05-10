@@ -22,7 +22,7 @@ $userName=$_SESSION['userName'];
 </head>
 
 <body>
-  <nav id="navbar-example2" class="navbar sticky-top  bg-body-tertiary px-3 mb-3">
+  <nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
     <a class="navbar-brand" href="#"><img src="images/Logo 5.png">TrendyClothes</a>
     <ul class="nav nav-pills">
       <li class="nav-item ">
@@ -56,67 +56,56 @@ $userName=$_SESSION['userName'];
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Filtering</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-          <div class="mb-3">
-              <label for="colorFilter" class="form-label">Color:</label><br>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorRed" value="Red">
-                  <label class="form-check-label" for="colorRed">Red</label>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Filtering</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorBlue" value="Blue">
-                  <label class="form-check-label" for="colorBlue">Blue</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorGreen" value="Green">
-                  <label class="form-check-label" for="colorGreen">Green</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorGray" value="Gray">
-                  <label class="form-check-label" for="colorGray">Gray</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorBlack" value="Black">
-                  <label class="form-check-label" for="colorBlack">Black</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="colorwhite" value="white">
-                  <label class="form-check-label" for="colorwhite">white</label>
-              </div>
-              
-          </div>
+              <div class="modal-body">
+                <div class="mb-3">
+                  <label for="colorFilter" class="form-label">Color:</label>
+                  <select class="form-select" id="colorFilter">
+                    <option value="Red" style="color: red;">&#x25A0; Red</option>
+                    <option value="Blue" style="color: blue;">&#x25A0; Blue</option>
+                    <option value="Green" style="color: green;">&#x25A0; Green</option>
+                    <option value="Gray" style="color: gray;">&#x25A0; Gray</option>
+                    <option value="Black" style="color: black;">&#x25A0; Black</option>
+                    <option value="White" style="color: white; background-color: gray;">&#x25A0; White</option>
+                  </select>
+                </div>
 
-          <div class="mb-3">
-              <label for="sizeFilter" class="form-label">Size:</label>
-              <select class="form-select" id="sizeFilter">
-                  <option selected>Select Size</option>
-                  <option value="XXS">XXS</option>
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                  <option value="XXL">XXL</option>
-              </select>
-          </div>
 
-          <div class="mb-3">
-              <label for="priceFilter" class="form-label">Price Range:</label>
-              <input type="range" class="form-range" id="priceFilter" min="0" max="1000" step="1">
-          </div>
-      </div>
 
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+                <div class="mb-3">
+                  <label for="sizeFilter" class="form-label">Size:</label>
+                  <select class="form-select" id="sizeFilter">
+                    <option selected>Select Size</option>
+                    <option value="XXS">XXS</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="priceFilter" class="form-label">Price Range:</label>
+                  <input type="range" class="form-range" id="priceFilter" min="0" max="1000" step="1">
+                  <div id="priceDisplay">0 MAD</div>
+                </div>
+
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
         <button class="btn btn-outline" type="submit">Search</button>
       </form>

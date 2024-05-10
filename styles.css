@@ -224,9 +224,28 @@ footer{
 .preference-button {
     margin-right: 10px;
     margin-bottom: 10px;
-  }
+}
 
-  .selected {
-    background-color: #007bff;
-    color: #fff;
-  }
+.selected {
+background-color: #007bff;
+color: #fff;
+}
+#bodyPreferences{
+margin: 0% 25%;
+}
+.preference-button{
+    background-color: #911F27;
+    color: white;
+}
+#savePreferencesBtn{
+    background-color: #911F27;
+    color: white;
+}
+#selectedPreferences{
+    background-color: #FACE7F;
+    color: #911F27;
+    border-color: #911F27;
+}
+.preferences-title{
+    color: #911F27;
+}
