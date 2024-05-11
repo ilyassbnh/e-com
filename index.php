@@ -1,5 +1,14 @@
 
+<?php
+function alert($message){
 
+
+
+echo'<script>alert("'.$message.'");</script>';
+
+}
+
+?>
 
 
 
@@ -14,13 +23,10 @@
 
 session_start();
 
-if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
+if (isset($_SESSION['userName'])) {
 
   header('Location:account.php');
-} else {
-
-  $_SESSION['userName'] = "";
-}
+} 
 
 
 
@@ -94,6 +100,7 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
                 <div class="mb-3">
                   <label for="colorFilter" class="form-label">Color:</label>
                   <select name="colorFilter"class="form-select" id="colorFilter">
+                  <option value="none" style="color: none;">&#x25A0; None</option>
                     <option value="red" style="color: red;">&#x25A0; Red</option>
                     <option value="blue" style="color: blue;">&#x25A0; Blue</option>
                     <option value="green" style="color: green;">&#x25A0; Green</option>
@@ -120,15 +127,15 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
 
                 <div class="mb-3">
                   <label for="priceFilter" class="form-label">Price Range:</label>
-                  <input type="range" class="form-range" id="priceFilter" min="0" max="1000" step="1">
+                  <input name="priceFilter"type="range" class="form-range" id="priceFilter" min="0" max="1000" step="1">
                   <div id="priceDisplay">0 MAD</div>
                 </div>
 
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Save changes</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
               </div>
             </div>
           </div>
@@ -379,28 +386,12 @@ if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $text=$_POST['searchInput'];
-
-
-if($_POST['sizeFilter']!="" && isset($_POST['sizeFilter'])){
 $size=$_POST['sizeFilter'];
-
-
-}
-else{
-
-  $size="";
-}
-if($_POST['colorFilter']!="" && isset($_POST['colorFilter'])){
-
-  echo'<script>'.$_POST['colorFilter'].'</script>';
-  $color=$_POST['colorFilter'];
-  
-  
-  }
-  else{
-  
-    $color="";
-  }
+//echo'<script>'.$_POST['sizeFilter'].'</script>';
+$color=$_POST['colorFilter'];
+ // echo'<script>'.$_POST['colorFilter'].'</script>';
+  $price=$_POST['priceFilter'];
+ 
 
 
 $file = 'Book.csv';
@@ -423,14 +414,69 @@ if (($manage= fopen($file, 'r')) !== false) {
      </div>
    </div>';
      }
+ 
+     else if($size=="Select Size"&&$color=="none"&&$price==500&&$text==$row[2]){
 
-     
+      echo '<div class="cardNP" style="width: 18rem;">
+      <img src="' . $row[6] . '" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">' . $row[2] . '</p> 
+        <p class="card-text">' . $row[5] . ' MAD</p>
+        <p class="card-text">' . $row[3] . '</p>
+        <p class="card-text">' . $row[4] . '</p>
+      </div>
+    </div>';
+
+     }
+     else if($size==$row[3]&&$color=="none"&&$text==$row[2]){
+
+      echo '<div class="cardNP" style="width: 18rem;">
+      <img src="' . $row[6] . '" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">' . $row[2] . '</p> 
+        <p class="card-text">' . $row[5] . ' MAD</p>
+        <p class="card-text">' . $row[3] . '</p>
+        <p class="card-text">' . $row[4] . '</p>
+      </div>
+    </div>';
+
+     }
+     else if($size=="Select Size"&&$color==$row[4]&&$text==$row[2]){
+
+      echo '<div class="cardNP" style="width: 18rem;">
+      <img src="' . $row[6] . '" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">' . $row[2] . '</p> 
+        <p class="card-text">' . $row[5] . ' MAD</p>
+        <p class="card-text">' . $row[3] . '</p>
+        <p class="card-text">' . $row[4] . '</p>
+      </div>
+    </div>';
+
+     }
+     else if($size=="Select Size"&&$color=="none"&&$row[5]<=$price&&$text==$row[2]){
+
+      echo '<div class="cardNP" style="width: 18rem;">
+      <img src="' . $row[6] . '" class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">' . $row[2] . '</p> 
+        <p class="card-text">' . $row[5] . ' MAD</p>
+        <p class="card-text">' . $row[3] . '</p>
+        <p class="card-text">' . $row[4] . '</p>
+      </div>
+    </div>';
+
+     }
+
+
+      
      
      
   }
-  
-  
- 
+  if(isset($_POST['sizeFilter'])&&isset($_POST['colorFilter'])){
+    //var_dump($price);
+    //echo'<script>alert("'.$_POST['sizeFilter'].' '.$_POST['colorFilter'].'")</script>';
+  }
   fclose($manage);
   
 }}
@@ -460,3 +506,5 @@ if (($manage= fopen($file, 'r')) !== false) {
 </body>
 
 </html>
+
+

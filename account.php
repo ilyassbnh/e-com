@@ -1,6 +1,7 @@
 <?php
 session_start();
 $userName=$_SESSION['userName'];
+$IdUser=$_SESSION['idUser'];
 ?>
 
 <!DOCTYPE html>
@@ -119,8 +120,47 @@ $userName=$_SESSION['userName'];
   </nav>
   <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
     data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+<section class="recommended">
 
 
+
+</section>
+<?php $filename1 = 'Book.csv';
+      $filename2= 'preferences.csv';
+      $delimiter = ',';
+      $prefArray=array();
+      $i=0;
+      if (($handle1 = fopen($filename2, 'r')) !== false) {
+        fgetcsv($handle1, 1000, $delimiter);
+        while (($row = fgetcsv($handle1, 1000, $delimiter)) !== false) {
+          if($_SESSION['idUser']==$row[0]){
+          $prefArray=$row;}
+        }
+        fclose($handle1);
+      }
+      var_dump($prefArray);
+      if(($handle2 = fopen($filename1, 'r')) !== false) {
+        fgetcsv($handle2, 1000, $delimiter);
+        
+        while (($row = fgetcsv($handle2, 1000, $delimiter)) !== false) {
+          if(in_array($row[1], $prefArray)||in_array($row[2], $prefArray)||in_array($row[4], $prefArray)){
+          echo '<div class="cardNP" style="width: 18rem;">
+            <img src="' . $row[6] . '" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">' . $row[2] . '</p> 
+              <p class="card-text">' . $row[5] . ' MAD</p>
+              <p class="card-text">' . $row[1] . '</p> 
+              <p class="card-text">' . $row[2] . '</p> 
+              <p class="card-text">' . $row[4] . '</p> 
+            </div>
+          </div>';
+        }
+      }
+        fclose($handle2);
+      }
+
+
+      ?>
     <!-- First heading -->
     <h4 id="scrollspyHeading1"></h4>
     <div id="carouselExampleCaptions" class="carousel slide">
