@@ -1,5 +1,16 @@
 <?php
-session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   $IdUser;
+   $FullName=$_POST['fullName'];
+   $Email=$_POST['email'];
+   $Password1=$_POST['password1'];
+   $Password2=$_POST['password2'];
+  
+   if($Password1 !=""&& $Password2!=""){
+    if($Password1!=$Password2){
+
+echo'<script>alert("Passwords Do Not Match")</script>';
 
 // Check if the form is submitted for registration
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
@@ -34,11 +45,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     }
 }
 
-// Check if the form is submitted for preferences selection
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['preferences'])) {
-    $gender = $_POST['gender'];
-    $favoriteColor = $_POST['favorite_color'];
-    $clothesType = $_POST['clothes_type'];
+      echo'<script>alert("'.$FullName.'")</script>';
+      $IdUser;
+      $csvUser='User.csv';
+      $delimiter=",";
+      $fileHandle = fopen($csvUser, 'r');
+      
+    
+      fgetcsv($fileHandle, 1000, $delimiter);
+      while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
+        
+      
+        $IdUser=$row[0];}
+        
+        $IdUser++;
+      
+  }
+     
+     
+      $newUser= array($IdUser,$FullName, $Email,$Password1);
+      session_start();
+      $_SESSION['idUser']=$IdUser;
+      $_SESSION['userName']=$FullName;
+      $fileHandle = fopen($csvUser, 'a');
+      if ($fileHandle !== false) {
+    
+    fputcsv($fileHandle, $newUser);
 
     // Open the CSV file in append mode
     $csvFile = 'preferences.csv';
@@ -78,28 +110,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['preferences'])) {
     <h1 class="mt-5 mb-3 preferences-title">Select Your Preferences</h1>
     <div class="mb-3">
       <!-- Add more preference buttons as needed -->
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference1">Male</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference2">Female</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference3">Child</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference4">Blue</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference5">Red</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference6">Green</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference7">Hoodie</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference8">Pants</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference9">Shorts</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference10">Sneakers</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference11">Sweatshirt</button>
-      <button type="button" class="btn btn-outline preference-button" data-preference="preference12">T-shirt</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference1" value="Male">Male</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference2" value="Female">Female</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference3"value="Child">Child</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference4"value="blue">Blue</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference5" value="red">Red</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference6"value="green">Green</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference7" value="hoodie">Hoodie</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference8" value="pant">Pants</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference9"value="shorts">Shorts</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference10" value="sneaker">Sneakers</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference11"value="sweatshirt">Sweatshirt</button>
+      <button type="button" class="btn btn-outline preference-button" data-preference="preference12"value="t-shirt">T-shirt</button>
     </div>
-    <input type="text" id="selectedPreferences" class="form-control mb-3" readonly>
-    <button type="button" class="btn" id="savePreferencesBtn">Save Preferences</button>
+    <form action="preferences.php" method="GET">
+    <input type="text" name="selectedPreferences"id="selectedPreferences" class="form-control mb-3" readonly>
+    <button type="submit" class="btn" id="savePreferencesBtn" >Save Preferences</button>
+  </form>
   </div>
 
 </body>
 </html>
-<?php
-
-echo'<script>function redirect(){window.location.href="account.php";}</script>';
 
 
-?>

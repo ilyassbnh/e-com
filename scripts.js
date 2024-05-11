@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const selectedPreferences = [];
       preferenceButtons.forEach(button => {
         if (button.classList.contains('selected')) {
-          selectedPreferences.push(button.innerText.trim());
+          selectedPreferences.push(button.value/*innerText.trim()*/);
         }
       });
 
@@ -48,3 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       selectedPreferencesInput.value = selectedPreferences.join(', ');
     }
   });
+
+
+
+  

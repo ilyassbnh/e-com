@@ -1,5 +1,32 @@
-ID,Gender,FavoriteColor,ClothesType
-1,Male,Blue,T-Shirt
-2,Female,Red,Pants
-3,Child,Green,Hoodie
+IdUser,preferences
 
+11,Male," Female"," Child"
+11,Male," Female"," Child"
+12,Child," Blue"," Red"
+12,Shorts," Sneakers"," Sweatshirt"
+12,Shorts," Sneakers"," Sweatshirt"
+13,Male," Child"," Sneakers"
+13,Male," Child"," Sneakers"
+14,Green," Hoodie"," Pants"
+15,Pants," Sweatshirt"," T-shirt"
+16,Male," Child"," Blue"
+17,Child," Blue"," Sneakers"
+18,Child," Blue"," Sneakers"
+19,Male," Female"," Child"
+1,Shorts," Sneakers"," Sweatshirt"
+2,Female," Child"," Blue"
+3,Child," Blue"," Red"," Green"
+4,Female," Child"
+5,Red," Pants"
+6,Child," Blue"," Red"
+7,Female," Child"," Red"
+8,Female," Child"
+9,Female," Child"
+10,Child," Green"," T-shirt"
+11,Red
+12,Male
+13,Male," "
+14,red," sneaker"," t-shirt"
+15,Female," Child"," red"," t-shirt"
+16,Female," Child"," blue"
+17,red
