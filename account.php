@@ -1,6 +1,49 @@
 <?php
 session_start();
-$userName=$_SESSION['userName'];
+
+// Check if the user is logged in
+if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+  // If not logged in, redirect to login page
+  header('Location: login.php');
+  exit;
+}
+
+// Load user preferences
+$preferencesFile = 'preferences.csv';
+$currentUserPreferences = [];
+if (($handle = fopen($preferencesFile, 'r')) !== false) {
+  while (($data = fgetcsv($handle)) !== false) {
+    if ($data[0] === $_SESSION['userName']) {
+      // Found user's preferences
+      $currentUserPreferences = array_slice($data, 1); // Remove username from preferences
+      break;
+    }
+  }
+  fclose($handle);
+}
+
+// Load products and filter based on user preferences
+$productsFile = 'Book.csv';
+$trendingProducts = [];
+if (($handle = fopen($productsFile, 'r')) !== false) {
+  while (($data = fgetcsv($handle)) !== false) {
+    // Filter products based on user preferences
+    if (count(array_intersect($currentUserPreferences, $data)) > 0) {
+      $trendingProducts[] = $data;
+      // Limit to 3 trending products
+      if (count($trendingProducts) >= 3) {
+        break;
+      }
+    }
+  }
+  fclose($handle);
+}
+$userName = "";
+
+if (!isset($_SESSION['userName']) || empty($_SESSION['userName'])) {
+  header('Location: login.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -9,11 +52,8 @@ $userName=$_SESSION['userName'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css">
   <script src="https://kit.fontawesome.com/f124013f63.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -43,19 +83,18 @@ $userName=$_SESSION['userName'];
       <li class="nav-item">
         <a class="nav-link" href="panel.php">Panel</a>
       </li>
-      
+
 
       <form class="d-flex" role="search">
-      <div class="position-relative">
-        <input class="form-control me-2 pr-4" type="search" placeholder="Search" aria-label="Search">
-      </div>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <span class="input-group-text"><i class="fas fa-filter" data-bs-toggle="modal-body"
-            data-bs-target="#exampleModal" style="color: white"></i></span>
-      </button>
+        <div class="position-relative">
+          <input class="form-control me-2 pr-4" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <span class="input-group-text"><i class="fas fa-filter" data-bs-toggle="modal-body" data-bs-target="#exampleModal" style="color: white"></i></span>
+        </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-focus="false">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -106,31 +145,27 @@ $userName=$_SESSION['userName'];
           </div>
         </div>
 
-      </div>
+        </div>
         <button class="btn btn-outline" type="submit">Search</button>
       </form>
       <li class="nav-item">
-        <a class="nav-link" href="#"><?php echo '<i class="fa-solid fa-user"></i> '.$userName?></a>
+        <a class="nav-link" href="#"><?php echo '<i class="fa-solid fa-user"></i> ' . $userName ?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php"onclick="<?php session_destroy();?>"><i class="fa-solid fa-sign-out"></i> Logout</a>
+        <a class="nav-link" href="index.php" onclick="<?php session_destroy(); ?>"><i class="fa-solid fa-sign-out"></i> Logout</a>
       </li>
     </ul>
   </nav>
-  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%"
-    data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
 
 
     <!-- First heading -->
     <h4 id="scrollspyHeading1"></h4>
     <div id="carouselExampleCaptions" class="carousel slide">
       <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -150,8 +185,7 @@ $userName=$_SESSION['userName'];
         <div class="carousel-item ">
           <div class="row">
             <div class="col-md-6">
-              <img src="images/Camiseta Casual Masculina - Ice Cool - Azul Escuro _ 4G.jpeg" class="d-block w-100"
-                alt="...">
+              <img src="images/Camiseta Casual Masculina - Ice Cool - Azul Escuro _ 4G.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="col-md-6" style="color: black;">
               <h5>summer sales</h5>
@@ -165,9 +199,7 @@ $userName=$_SESSION['userName'];
         <div class="carousel-item ">
           <div class="row">
             <div class="col-md-6">
-              <img
-                src="images/Solid Color Men's Women's Hoodie Jacket Fashion Street Casual Sets Autumn Winter Fleece Sportswear + Pants 2024Multicolor Suit green11-L.jpeg"
-                class="d-block w-100" alt="...">
+              <img src="images/Solid Color Men's Women's Hoodie Jacket Fashion Street Casual Sets Autumn Winter Fleece Sportswear + Pants 2024Multicolor Suit green11-L.jpeg" class="d-block w-100" alt="...">
             </div>
             <div class="col-md-6" style="color: black;">
               <h5>summer sales</h5>
@@ -180,13 +212,11 @@ $userName=$_SESSION['userName'];
         </div>
         <!-- Repeat the above structure for other carousel items -->
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-        data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
@@ -223,41 +253,16 @@ $userName=$_SESSION['userName'];
     <!-- TRENDING PRODUCTS -->
     <h4 id="scrollspyHeading3">TRENDING PRODUCTS</h4>
     <div class="trend-prod">
-      <div class="card" style="width: 18rem;">
-        <img
-          src="images/2024 Men's Casual Pants Loose Waffle Plaid Pants Young Men Spring Autumn Seasons Sweatpants Casual Sweatpants 4XL 80-90kg-Espresso.jpeg"
-          class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">name of the element</p>
-          <p class="card-text">price</p>
+      <?php foreach ($trendingProducts as $product) : ?>
+        <div class="card" style="width: 18rem;">
+          <img src="<?php echo $product['image_url']; ?>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text"><?php echo $product['name']; ?></p>
+            <p class="card-text"><?php echo $product['price']; ?></p>
+          </div>
         </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="images/Camiseta Casual Masculina - Ice Cool - Azul Escuro _ 4G.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">name of the element</p>
-          <p class="card-text">price</p>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img src="images/Cartoon Bear Baby Romper with Hat.jpeg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">name of the element</p>
-          <p class="card-text">price</p>
-        </div>
-      </div>
-      <div class="card" style="width: 18rem;">
-        <img
-          src="images/Solid Color Men's Women's Hoodie Jacket Fashion Street Casual Sets Autumn Winter Fleece Sportswear + Pants 2024Multicolor Suit green11-L.jpeg"
-          class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">name of the element</p>
-          <p class="card-text">price</p>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
-
-
 
     <!-- Fourth heading -->
     <div class="fourth-heading">
@@ -270,9 +275,7 @@ $userName=$_SESSION['userName'];
           <img src="images/Camiseta Casual Masculina - Ice Cool - Azul Escuro _ 4G.jpeg" alt="hoodies image">
         </div>
         <div class="right-reartured">
-          <img
-            src="images/Solid Color Men's Women's Hoodie Jacket Fashion Street Casual Sets Autumn Winter Fleece Sportswear + Pants 2024Multicolor Suit green11-L.jpeg"
-            alt="hoodies image">
+          <img src="images/Solid Color Men's Women's Hoodie Jacket Fashion Street Casual Sets Autumn Winter Fleece Sportswear + Pants 2024Multicolor Suit green11-L.jpeg" alt="hoodies image">
           <img src="images/Cartoon Bear Baby Romper with Hat.jpeg" alt="hoodies image">
         </div>
       </div>
@@ -282,32 +285,31 @@ $userName=$_SESSION['userName'];
     <!-- new product -->
     <h1 id="scrollspyHeading5">New Products</h1>
     <div class="new-product">
-     
-<?php $filename = 'Book.csv';
-         $delimiter = ',';
-         if (($handle = fopen($filename, 'r')) !== false) {
-          fgetcsv($handle, 1000, $delimiter);
-          while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
-            echo '<div class="cardNP" style="width: 18rem;">
-            <img src="'.$row[6].'" class="card-img-top" alt="...">
+
+      <?php $filename = 'Book.csv';
+      $delimiter = ',';
+      if (($handle = fopen($filename, 'r')) !== false) {
+        fgetcsv($handle, 1000, $delimiter);
+        while (($row = fgetcsv($handle, 1000, $delimiter)) !== false) {
+          echo '<div class="cardNP" style="width: 18rem;">
+            <img src="' . $row[6] . '" class="card-img-top" alt="...">
             <div class="card-body">
-              <p class="card-text">'.$row[2].'</p>
-              <p class="card-text">'.$row[5].' MAD</p>
+              <p class="card-text">' . $row[2] . '</p>
+              <p class="card-text">' . $row[5] . ' MAD</p>
             </div>
           </div>';
-            
-          }
-          fclose($handle);
+        }
+        fclose($handle);
       }
 
 
-?>
+      ?>
 
 
     </div>
 
 
-    
+
     <div class="happyCustomers">
       <h1>HAPPY CUSTOMERS</h1>
       <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam, felis in consectetur rutrum, lectus urna
@@ -317,14 +319,16 @@ $userName=$_SESSION['userName'];
 
     </div>
     <div class="ourBlog">
-         <div><h1>OUR BLOG</h1></div>
+      <div>
+        <h1>OUR BLOG</h1>
+      </div>
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="images/worldIsBetter.svg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">NUNC VOLUTPAT VENENATIS</h5>
           <p class="card-text">Nulla a odio sed magna congue condimentum. Pellentesque convallis enim nec libero vulputate, et rhoncus urna
             placerat. Phasellus mattis, diam vel vehicula facilisis</p>
-          
+
         </div>
       </div>
       <div class="card" style="width: 18rem;">
@@ -333,35 +337,33 @@ $userName=$_SESSION['userName'];
           <h5 class="card-title">VESTIBULUM NISL FELIS</h5>
           <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam justo et nibh venenatis aliquet. Morbi
             mollis mollis pellentesque. Aenean vitae erat velit</p>
-          
+
         </div>
       </div>
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="images/imDelight.svg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">PROIN EU AUGUE EFFICITUR</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam justo et nibh venenatis aliquet. Morbi
-              mollis mollis pellentesque. Aenean vitae erat velit.</p>
-            
-          </div>
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="images/imDelight.svg" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">PROIN EU AUGUE EFFICITUR</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc aliquam justo et nibh venenatis aliquet. Morbi
+            mollis mollis pellentesque. Aenean vitae erat velit.</p>
+
+        </div>
       </div>
-     
-      
+
+
     </div>
 
     <!-- news -->
     <h1 id="scrollspyHeading5">stay up to date</h1>
     <div class="news">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Name" aria-label="Username"
-          aria-describedby="basic-addon1">
-        <input type="text" class="form-control" placeholder="Email" aria-label="Username"
-          aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
         <button type="button" class="btn btn-outline-secondary">Subscribe</button>
       </div>
 
-      
-      
+
+
 
     </div>
 

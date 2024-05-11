@@ -1,56 +1,61 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $IdUser;
-   $FullName=$_POST['fullName'];
-   $Email=$_POST['email'];
-   $Password1=$_POST['password1'];
-   $Password2=$_POST['password2'];
-  
-   if($Password1 !=""&& $Password2!=""){
-    if($Password1!=$Password2){
+session_start();
 
-echo'<script>alert("Passwords Do Not Match")</script>';
+// Check if the form is submitted for registration
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
+    $FullName = $_POST['fullName'];
+    $Email = $_POST['email'];
+    $Password1 = $_POST['password1'];
+    $Password2 = $_POST['password2'];
 
-
+    if ($Password1 != "" && $Password2 != "") {
+        if ($Password1 != $Password2) {
+            echo '<span style="color: red;">Passwords Do Not Match</span>';
+        } else {
+            $csvUser = 'User.csv';
+            $delimiter = ",";
+            $fileHandle = fopen($csvUser, 'r');
+            fgetcsv($fileHandle, 1000, $delimiter);
+            $IdUser = 0; // Initialize IdUser variable
+            while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
+                $IdUser = $row[0];
+            }
+            $IdUser++;
+            $newUser = array($IdUser, $FullName, $Email, $Password1);
+            $fileHandle = fopen($csvUser, 'a');
+            if ($fileHandle !== false) {
+                fputcsv($fileHandle, $newUser);
+                fclose($fileHandle);
+                $_SESSION['userName'] = $FullName;
+                header('Location: account.php');
+                exit();
+            }
+        }
     }
-    else{
+}
 
-      echo'<script>alert("'.$FullName.'")</script>';
-      $IdUser;
-      $csvUser='User.csv';
-      $delimiter=",";
-      $fileHandle = fopen($csvUser, 'r');
-      
-    
-      fgetcsv($fileHandle, 1000, $delimiter);
-      while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
-        
-      
-        $IdUser=$row[0];}
-        
-        $IdUser++;
-      
-  }
-     
-     
-      $newUser= array($IdUser,$FullName, $Email,$Password1);
-      $fileHandle = fopen($csvUser, 'a');
-      if ($fileHandle !== false) {
-    
-    fputcsv($fileHandle, $newUser);
+// Check if the form is submitted for preferences selection
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['preferences'])) {
+    $gender = $_POST['gender'];
+    $favoriteColor = $_POST['favorite_color'];
+    $clothesType = $_POST['clothes_type'];
 
+    // Open the CSV file in append mode
+    $csvFile = 'preferences.csv';
+    $file = fopen($csvFile, 'a');
 
-    fclose($fileHandle);
+    // Prepare data to be written to the CSV file
+    $userData = [$gender, $favoriteColor, $clothesType];
 
+    // Write the user data to the CSV file
+    fputcsv($file, $userData);
 
-
-    }}}
-  
-    ?>
-
-
+    // Close the file
+    fclose($file);
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,7 +92,7 @@ echo'<script>alert("Passwords Do Not Match")</script>';
       <button type="button" class="btn btn-outline preference-button" data-preference="preference12">T-shirt</button>
     </div>
     <input type="text" id="selectedPreferences" class="form-control mb-3" readonly>
-    <button type="button" class="btn" id="savePreferencesBtn" onclick="redirect()">Save Preferences</button>
+    <button type="button" class="btn" id="savePreferencesBtn">Save Preferences</button>
   </div>
 
 </body>

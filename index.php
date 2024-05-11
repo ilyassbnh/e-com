@@ -1,28 +1,68 @@
-
-
-
-
-
-    
-
-
-   
-
-
-
 <?php
-
 session_start();
 
+// Check if the user is already logged in
 if (isset($_SESSION['userName']) && !empty($_SESSION['userName'])) {
-
-  header('Location:account.php');
-} else {
-
-  $_SESSION['userName'] = "";
+  // If logged in, redirect to the account page
+  header('Location: account.php');
+  exit; // Stop execution after redirection
 }
 
+// Check if the registration form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Process user registration
+  // (Add your registration logic here, similar to the code you provided)
+  $IdUser;
+  $FullName = $_POST['fullName'];
+  $Email = $_POST['email'];
+  $Password1 = $_POST['password1'];
+  $Password2 = $_POST['password2'];
 
+  if ($Password1 != "" && $Password2 != "") {
+    if ($Password1 != $Password2) {
+      echo '<script>alert("Passwords Do Not Match")</script>';
+    } else {
+      // Registration successful, perform necessary actions
+      $IdUser;
+      $csvUser = 'User.csv';
+      $delimiter = ",";
+      $fileHandle = fopen($csvUser, 'r');
+      fgetcsv($fileHandle, 1000, $delimiter);
+      while (($row = fgetcsv($fileHandle, 1000, $delimiter)) !== false) {
+        $IdUser = $row[0];
+      }
+      $IdUser++;
+      $newUser = array($IdUser, $FullName, $Email, $Password1);
+      $fileHandle = fopen($csvUser, 'a');
+      if ($fileHandle !== false) {
+        fputcsv($fileHandle, $newUser);
+        fclose($fileHandle);
+      }
+    }
+  }
+
+  // Process user preferences
+  $gender = $_POST['gender'];
+  $favoriteColor = $_POST['favorite_color'];
+  $clothesType = $_POST['clothes_type'];
+
+  // Open the CSV file in append mode
+  $csvFile = 'preferences.csv';
+  $file = fopen($csvFile, 'a');
+
+  // Prepare data to be written to the CSV file
+  $userData = [$gender, $favoriteColor, $clothesType];
+
+  // Write the user data to the CSV file
+  fputcsv($file, $userData);
+
+  // Close the file
+  fclose($file);
+
+  // Redirect to the account page after registration
+  header('Location: account.php');
+  exit; // Stop execution after redirection
+}
 
 ?>
 

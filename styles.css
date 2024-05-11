@@ -144,7 +144,7 @@ footer{
         align-items: center;
         text-align: center;
         color:#FACE7F;
-       padding: 12vw;
+       padding: 5vw;
        border-radius: 5vh;
 
     }
@@ -248,4 +248,7 @@ margin: 0% 25%;
 }
 .preferences-title{
     color: #911F27;
+}
+.container{
+    margin: 20%;
 }
